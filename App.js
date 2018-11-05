@@ -16,13 +16,20 @@ export default class App extends Component {
       }
     })
   }
+  popFromStack() {
+    this.setState(({stack}) => {
+      return {
+        stack: stack.slice(0, -1)
+      }
+    })
+  }
 
   render() {return (
       <View style={styles.container}>
       <View style={styles.screen}><Text>{this.state.stack}</Text></View>
         <View style={styles.row}>
-          <View style={styles.button}><Button title="Clear"></Button></View>
-          <View style={styles.button}><Button title="Backspace"></Button></View>
+          <View style={styles.button}><Button title="Clear" onPress={() => this.setState(() => ({stack: []}))}></Button></View>
+          <View style={styles.button}><Button title="Backspace" onPress={this.popFromStack.bind(this)}></Button></View>
         </View>
         <View style={styles.row}>
           <View style={styles.button}><Button title={this.state.buttons[0]} onPress={this.pushToStack.bind(this, 0)}></Button></View>
