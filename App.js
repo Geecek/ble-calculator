@@ -26,7 +26,7 @@ export default class App extends Component {
 
   render() {return (
       <View style={styles.container}>
-      <View style={styles.screen}><Text>{this.state.stack}</Text></View>
+        <View style={styles.screen}><Text ellipsizeMode='head' numberOfLines={1} style={styles.equation}>{this.state.stack}</Text></View>
         <View style={styles.row}>
           <View style={styles.button}><Button title="Clear" onPress={() => this.setState(() => ({stack: []}))}></Button></View>
           <View style={styles.button}><Button title="Backspace" onPress={this.popFromStack.bind(this)}></Button></View>
@@ -78,7 +78,14 @@ const styles = StyleSheet.create({
     margin: 10
   },
   screen: {
-    flex: 2,
-    backgroundColor: 'steelblue'
+    flex: 1.5,
+    backgroundColor: '#358FF5',
+    padding: 20,
+    paddingVertical: 30
+  },
+  equation: {
+    color: 'white',
+    textAlign: 'right',
+    fontSize: 62
   }
 })
