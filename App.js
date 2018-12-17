@@ -23,6 +23,31 @@ export default class App extends Component {
       }
     })
   }
+  pressHandler(index) {
+    const value = this.state.buttons[index]
+    const {stack} = this.state
+    return Number.isNaN(+value)
+      ? () => { // operation handler
+        if (stack.length === 0) {
+          return
+        }
+        if (Number.isNaN(+stack[stack.length - 1])) {
+          this.popFromStack()
+        }
+        this.setState(({stack}) => {
+          return {
+            stack: stack.concat([value])
+          }
+        })
+      }
+      : () => { // number handler
+        if (Number.isNaN(+stack[stack.length - 1])) {
+          this.setState({stack: stack.concat([value])})
+          return
+        }
+        this.setState({stack: stack.concat([stack.pop() + value])})
+      }
+  }
 
   render() {return (
       <View style={styles.container}>
@@ -32,29 +57,29 @@ export default class App extends Component {
           <View style={styles.button}><Button title="Backspace" onPress={this.popFromStack.bind(this)}></Button></View>
         </View>
         <View style={styles.row}>
-          <View style={styles.button}><Button title={this.state.buttons[0]} onPress={this.pushToStack.bind(this, 0)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[1]} onPress={this.pushToStack.bind(this, 1)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[2]} onPress={this.pushToStack.bind(this, 2)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[3]} onPress={this.pushToStack.bind(this, 3)}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[0]} onPress={this.pressHandler.bind(this, 0)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[1]} onPress={this.pressHandler.bind(this, 1)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[2]} onPress={this.pressHandler.bind(this, 2)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[3]} onPress={this.pressHandler.bind(this, 3)()}></Button></View>
         </View>
         <View style={styles.row}>
-          <View style={styles.button}><Button title={this.state.buttons[4]} onPress={this.pushToStack.bind(this, 4)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[5]} onPress={this.pushToStack.bind(this, 5)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[6]} onPress={this.pushToStack.bind(this, 6)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[7]} onPress={this.pushToStack.bind(this, 7)}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[4]} onPress={this.pressHandler.bind(this, 4)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[5]} onPress={this.pressHandler.bind(this, 5)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[6]} onPress={this.pressHandler.bind(this, 6)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[7]} onPress={this.pressHandler.bind(this, 7)()}></Button></View>
         </View>
         <View style={styles.row}>
-          <View style={styles.button}><Button title={this.state.buttons[8]} onPress={this.pushToStack.bind(this, 8)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[9]} onPress={this.pushToStack.bind(this, 9)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[10]} onPress={this.pushToStack.bind(this, 10)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[11]} onPress={this.pushToStack.bind(this, 11)}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[8]} onPress={this.pressHandler.bind(this, 8)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[9]} onPress={this.pressHandler.bind(this, 9)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[10]} onPress={this.pressHandler.bind(this, 10)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[11]} onPress={this.pressHandler.bind(this, 11)()}></Button></View>
         </View>
         <View style={styles.row}>
-          <View style={styles.threeFourthButton}><Button title={this.state.buttons[12]} onPress={this.pushToStack.bind(this, 12)}></Button></View>
-          <View style={styles.button}><Button title={this.state.buttons[13]} onPress={this.pushToStack.bind(this, 13)}></Button></View>
+          <View style={styles.threeFourthButton}><Button title={this.state.buttons[12]} onPress={this.pressHandler.bind(this, 12)()}></Button></View>
+          <View style={styles.button}><Button title={this.state.buttons[13]} onPress={this.pressHandler.bind(this, 13)()}></Button></View>
         </View>
         <View style={styles.button}>
-          <View><Button title="="></Button></View>
+          <View><Button title="=" onPress={() => console.warn(this.state.stack)}></Button></View>
         </View>
       </View>
     )
