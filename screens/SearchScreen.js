@@ -1,8 +1,6 @@
 import React from 'react'
-import { View, Text, Platform } from 'react-native'
-import { BleManager } from 'react-native-ble-plx';
-
-import TabBarIcon from '../components/TabBarIcon'
+import { View, Text } from 'react-native'
+import { BleManager } from 'react-native-ble-plx'
 
 export default class SearchScreen extends React.Component {
   constructor(props) {
@@ -10,15 +8,7 @@ export default class SearchScreen extends React.Component {
     this.manager = new BleManager()
   }
 
-  static navigationOptions = {
-    title: 'Search',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-search' : 'md-search'} />
-    ),
-  };
-
   componentWillMount() {
-    console.warn(this.props.xd)
     const subscription = this.manager.onStateChange((state) => {
       if (state === 'PoweredOn') {
         this.scanAndConnect()

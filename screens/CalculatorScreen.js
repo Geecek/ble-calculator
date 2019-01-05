@@ -3,11 +3,8 @@ import {
   StyleSheet, 
   View, 
   Button, 
-  Text,
-  Platform
+  Text
 } from 'react-native'
-
-import TabBarIcon from '../components/TabBarIcon';
 
 export default class CalculatorScreen extends Component {
   constructor(props) {
@@ -17,13 +14,6 @@ export default class CalculatorScreen extends Component {
       buttons: ['7', '8', '9', '+', '4', '5', '6', '-', '1', '2', '3', '*', '0', '/']
     }
   }
-
-  static navigationOptions = {
-    title: 'Calculator',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-calculator' : 'md-calculator'} />
-    ),
-  };
 
   pushToStack(index) {
     this.setState(({stack, buttons}) => {
