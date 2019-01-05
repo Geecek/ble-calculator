@@ -1,11 +1,13 @@
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
 import CalculatorScreen from '../screens/CalculatorScreen'
+import SearchScreen from '../screens/SearchScreen'
 
 import Colors from '../constants/Colors'
 
 const TabNavigator = createBottomTabNavigator(
   {
+    Search: SearchScreen,
     Calculator: CalculatorScreen,
   },
   {
