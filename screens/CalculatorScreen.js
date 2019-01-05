@@ -6,6 +6,8 @@ import {
   Text
 } from 'react-native'
 
+import Base64 from '../utils/Base64'
+
 export default class CalculatorScreen extends Component {
   constructor(props) {
     super(props)
@@ -55,6 +57,13 @@ export default class CalculatorScreen extends Component {
       }
   }
 
+  equalsHandler() {
+    const result = Base64.btoa((Math.abs(eval(this.state.stack.join('')) % 1024)).toString())
+    this.setState({stack: []})
+    console.warn(result)
+    this.props.writeCharacteristicToDevice(result)
+  }
+
   render() {return (
       <View style={styles.container}>
         <View style={styles.screen}><Text ellipsizeMode='head' numberOfLines={1} style={styles.equation}>{this.state.stack}</Text></View>
@@ -85,7 +94,7 @@ export default class CalculatorScreen extends Component {
           <View style={styles.button}><Button title={this.state.buttons[13]} onPress={this.pressHandler.bind(this, 13)()}></Button></View>
         </View>
         <View style={styles.button}>
-          <View><Button title="=" onPress={() => this.props.writeCharacteristicToDevice('Mg==')}></Button></View>
+          <View><Button title="=" onPress={() => this.equalsHandler()}></Button></View>
         </View>
       </View>
     )
