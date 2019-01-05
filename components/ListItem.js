@@ -3,14 +3,14 @@ import { View, Text, Button } from 'react-native'
 
 import Colors from '../constants/Colors'
 
-export default function ListItem({ name }) {
+export default function ListItem({ connectToDevice, name }) {
   return ( 
     <View style={styles.item}>
       <View style={styles.title}>
         <Text style={styles.title}>{ name }</Text>
       </View>
       <View style={styles.btn}>
-        <Button title={'Connect'} />
+        <Button onPress={() => connectToDevice(name)} title={'Connect'} />
       </View>
     </View>
   )

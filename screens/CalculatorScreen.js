@@ -85,7 +85,7 @@ export default class CalculatorScreen extends Component {
           <View style={styles.button}><Button title={this.state.buttons[13]} onPress={this.pressHandler.bind(this, 13)()}></Button></View>
         </View>
         <View style={styles.button}>
-          <View><Button title="=" onPress={() => console.warn(this.state.stack)}></Button></View>
+          <View><Button title="=" onPress={() => this.props.writeCharacteristicToDevice('Mg==')}></Button></View>
         </View>
       </View>
     )
