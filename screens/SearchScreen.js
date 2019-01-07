@@ -23,7 +23,7 @@ export default class SearchScreen extends React.Component {
   }
 
   async _connectToDevice(name) {
-    console.warn('chce sie polaczyc z ', name)
+    // console.warn('chce sie polaczyc z ', name)
     const connectedDevice = await this.state.devices.filter(device => device.name === name)[0].connect()
     this.props.setConnectedDevice(connectedDevice)
   }
