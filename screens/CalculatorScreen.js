@@ -58,14 +58,14 @@ export default class CalculatorScreen extends Component {
   }
 
   equalsHandler() {
-    let result = Math.abs(eval(this.state.stack.join('')) % 1024).toString()
+    let result = Math.round(Math.abs(eval(this.state.stack.join('')) % 1024)).toString()
     while (result.length < 4) {
       result = '0' + result
     }
     result
     .split('')
     .forEach(digit => {
-        console.warn(`Sending ${digit}`)
+        // console.warn(`Sending ${digit}`)
         this.props.writeCharacteristicToDevice(Base64.btoa(digit))
       })
     this.setState({stack: []})

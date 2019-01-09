@@ -22,11 +22,11 @@ _writeCharacteristicToDevice = (characteristic) => {
     .discoverAllServicesAndCharacteristics()
     .then((device) => {
       device.writeCharacteristicWithResponseForService('0000FFE0-0000-1000-8000-00805F9B34FB', '0000FFE1-0000-1000-8000-00805F9B34FB', characteristic)
-      .then((characteristic) => {
-        // console.warn('Wyslalem charakterystyke')
-        // console.warn(Object.keys(characteristic))
-        // console.warn(Object.entries(characteristic))
-      })
+      // .then((characteristic) => {
+      //   console.warn('Wyslalem charakterystyke')
+      //   console.warn(Object.keys(characteristic))
+      //   console.warn(Object.entries(characteristic))
+      // })
       .catch((error) => {
         console.warn('error: ', error)
       })

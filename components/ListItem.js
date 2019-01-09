@@ -7,7 +7,7 @@ export default function ListItem({ connectToDevice, name }) {
   return ( 
     <View style={styles.item}>
       <View style={styles.title}>
-        <Text style={styles.title}>{ name }</Text>
+        <Text style={styles.title}>{ name || 'noname' }</Text>
       </View>
       <View style={styles.btn}>
         <Button onPress={() => connectToDevice(name)} title={'Connect'} />
